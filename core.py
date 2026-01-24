@@ -1,7 +1,6 @@
 import commands
 
-print("Mini Jarvis aktif. 'cik' yazarak kapatabilirsin.")
-
+print("Hoş geldin! Mini Jarvis aktif. 'cik' yazarak kapatabilirsin.")
 while True:
     komut = input(">> ").lower().strip()
 

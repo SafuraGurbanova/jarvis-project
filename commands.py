@@ -1,7 +1,14 @@
 from datetime import datetime
 import memory
 
+def log_yaz(komut):
+    saat = datetime.now().strftime("%H:%M:%S")
+    print(f"[LOG] {saat} - {komut}")
+
 def cevapla(komut):
+    # log fonksiyonunu çağır
+    log_yaz(komut)
+
     if komut == "selam":
         print("Selam.")
 
@@ -31,3 +38,4 @@ def cevapla(komut):
 
     else:
         print("Bunu anlayamadım.")
+

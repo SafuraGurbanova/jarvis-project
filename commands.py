@@ -1,41 +1,68 @@
 from datetime import datetime
 import memory
+import random
 
-def log_yaz(komut):
-    saat = datetime.now().strftime("%H:%M:%S")
-    print(f"[LOG] {saat} - {komut}")
+def normalize(text):
+    return text.lower()\
+        .replace("?", "")\
+        .replace("ı","i")\
+        .replace("ö","o")\
+        .replace("ü","u")\
+        .replace("ç","c")\
+        .replace("ş","s")\
+        .replace("ğ","g")\
+        .strip()
+
 
 def cevapla(komut):
-    # log fonksiyonunu çağır
-    log_yaz(komut)
 
-    if komut == "selam":
-        print("Selam.")
+    komut = normalize(komut)
+    mood = memory.getir("mood")
 
-    elif komut == "nasilsin":
-        print("İyiyim. Sen nasılsın?")
+    responses = {
+        "selam": [
+            "Selam.",
+            "Hey buradayım.",
+            "Merhaba Levent."
+        ],
 
-    elif komut == "tarih":
-        print(datetime.now().strftime("%d.%m.%Y"))
+        "nasilsin": [
+             "İyiyim. Sen nasılsın?",
+             "Fena değil. Sen?",
+             "Bugün normal moddayım. Sen nasılsın?"
+        ]
+    }
 
-    elif komut == "saat":
+    if komut in responses:
+        print(random.choice(responses[komut]))
+        return
+
+    if komut == "saat":
         print(datetime.now().strftime("%H:%M:%S"))
+        return
 
-    elif komut == "adim ne":
+    if komut == "tarih":
+        print(datetime.now().strftime("%d.%m.%Y"))
+        return
+
+    if komut == "adim ne":
         isim = memory.getir("isim")
         if isim:
             print(f"Adın {isim}.")
         else:
-            print("Adını henüz bilmiyorum.")
+            print("Henüz adını bilmiyorum.")
+        return
 
-    elif komut.startswith("adim"):
+    if komut.startswith("adim"):
         isim = komut.replace("adim", "").strip()
         if isim:
             memory.kaydet("isim", isim)
-            print(f"Tamam, adını kaydettim: {isim}")
-        else:
-            print("Adını söylemedin.")
+            print(f"Tamam {isim}, kaydettim.")
+        return
 
-    else:
-        print("Bunu anlayamadım.")
+    if "kotu" in komut or "uzgun" in komut:
+        memory.kaydet("mood", "sad")
+        print("Ne oldu? Anlatmak ister misin?")
+        return
 
+    print("Bunu anlayamadım.")

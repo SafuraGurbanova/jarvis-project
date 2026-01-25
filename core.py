@@ -1,11 +1,18 @@
 import commands
+import memory
 
-print("Hoş geldin! Mini Jarvis aktif. 'cik' yazarak kapatabilirsin.")
+isim = memory.getir("isim")
+
+if isim:
+    print(f"Hoş geldin {isim}, bende seni bekliyordum")
+else:
+    print("Hoş geldin, ben Jarvis. İsmini söyle tanışalım.")
+
 while True:
-    komut = input(">> ").lower().strip()
+    komut = input(">> ")
 
     if komut == "cik":
-        print("Görüşürüz.")
+        print("Görüşürüz, çok özletme kendini.")
         break
 
     commands.cevapla(komut)

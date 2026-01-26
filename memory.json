@@ -1,8 +1,8 @@
 {
-  "mood": "sad",
-  "isim": "levent",
-  "state": "waiting_problem",
+  "mood": "normal",
+  "last_message": "okul",
+  "state": "idle",
   "last_problem": "okul",
-  "last_unknown": "nasilsin yakisikli",
-  "last_message": "iyiyim"
+  "emotion": null,
+  "isim": "levent"
 }

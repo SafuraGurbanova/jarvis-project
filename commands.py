@@ -8,9 +8,17 @@ def normalize(text):
     table = str.maketrans("ıöüçşğ", "ioucsg")
     return text.lower().translate(table).replace("?", "").strip()
 
-
 def cevapla(komut):
     komut = normalize(komut)
+
+    state = memory.getir("state")
+
+    if state == "waiting_problem":
+        memory.kaydet("last_problem", komut)
+        memory.kaydet("state", "idle")
+        print("Anladım... yanında olmaya çalışırım.")
+        return
+
 
     state = memory.getir("state")
     isim = memory.getir("isim")
@@ -19,21 +27,25 @@ def cevapla(komut):
         memory.kaydet("state", DEFAULT_STATE)
         state = DEFAULT_STATE
 
-    isim = isim if isim else "dostum"
-
-    if state == "sad":
-        memory.kaydet("last_problem", komut)
-        memory.kaydet("state", "idle")
-        print("Anladım... yanında olmaya çalışırım.")
+    if "kotu" in komut or "uzgun" in komut:
+        memory.kaydet("state", "waiting_problem")
+        print("Ne oldu? Anlatmak ister misin?")
         return
+
+
+    if memory.getir("state") == "sad":
+      memory.kaydet("last_problem", komut)
+      memory.kaydet("state", "idle")
+      print("Anladım... yanında olmaya çalışırım.")
+    return
+
 
     responses = {
         "selam": [
             "Selam.",
             "Hey buradayım.",
-            f"Merhaba {isim}."
+            f"Merhaba {isim if isim else 'dostum'}."
         ],
-
         "nasilsin": [
             "İyiyim. Sen nasılsın?",
             "Fena değil. Sen?",
@@ -45,11 +57,6 @@ def cevapla(komut):
     if komut in responses:
         print(random.choice(responses[komut]))
         return
-
-    if "iyiyim" in komut:
-        print("Buna sevindim 🙂")
-        return
-
 
     if komut == "saat":
         print(datetime.now().strftime("%H:%M:%S"))
@@ -67,10 +74,10 @@ def cevapla(komut):
         return
 
     if komut.startswith("adim ") and komut != "adim ne":
-        yeni_isim = komut.replace("adim", "").strip()
-        if yeni_isim:
-            memory.kaydet("isim", yeni_isim)
-            print(f"Tamam {yeni_isim}, kaydettim.")
+        isim = komut.replace("adim", "").strip()
+        if isim:
+            memory.kaydet("isim", isim)
+            print(f"Tamam {isim}, kaydettim.")
         return
 
     if "kotu" in komut or "uzgun" in komut:
@@ -78,5 +85,13 @@ def cevapla(komut):
         print("Ne oldu? Anlatmak ister misin?")
         return
 
-    memory.kaydet("last_unknown", komut)
+    if komut == "az once ne dedim":
+        son = memory.getir("last_message")
+        if son:
+            print(f"Şunu demiştin: {son}")
+        else:
+            print("Henüz bir şey söylemedin.")
+        return
+
+    memory.kaydet("last_message", komut)
     print("Bunu anlayamadım.")

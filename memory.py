@@ -25,3 +25,19 @@ def getir(key):
 # ilk mood
 if getir("mood") is None:
     kaydet("mood", "normal")
+
+# ilk last_question
+if getir("last_question") is None:
+    kaydet("last_question", "")
+
+# ilk state
+if getir("state") is None:
+    kaydet("state", "idle")
+
+# ilk last_problem
+if getir("last_problem") is None:
+    kaydet("last_problem", "")
+
+# ilk last_message
+if getir("last_message") is None:
+    kaydet("last_message", "")

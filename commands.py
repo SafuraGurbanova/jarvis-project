@@ -71,7 +71,7 @@ INTENSIFIERS = ["cok", "asiri", "gercekten", "baya"]
 def detect_intent(text):
     for intent, words in INTENTS.items():
         for w in words:
-            if text.startswith(w) or w in text:
+            if f" {w}" in f" {text}":
                 return intent
     return None
 
@@ -150,6 +150,23 @@ def cevapla(komut):
 
         return
 
+    if intent == "negative":
+        level = "normal"
+
+        for i in INTENSIFIERS:
+             if i in komut:
+                level = "high"
+
+        memory.kaydet("sad_level", level)
+        memory.kaydet("state", "waiting_problem")
+        memory.kaydet("reason_used", False)
+
+        if level == "high":
+          print("Bu bayağı ciddi geliyor… anlatmak ister misin?")
+        else:
+          print("Ne oldu? Anlatmak ister misin?")
+        return
+
   
     if state == "waiting_problem":
 
@@ -178,27 +195,6 @@ def cevapla(komut):
 
         print("Anladım... yanında olmaya çalışırım.")
         return
-
-
-
-    
-    if intent == "negative":
-        level = "normal"
-
-        for i in INTENSIFIERS:
-             if i in komut:
-                level = "high"
-
-        memory.kaydet("sad_level", level)
-        memory.kaydet("state", "waiting_problem")
-        memory.kaydet("reason_used", False)
-
-        if level == "high":
-          print("Bu bayağı ciddi geliyor… anlatmak ister misin?")
-        else:
-          print("Ne oldu? Anlatmak ister misin?")
-        return
-
 
 
 
@@ -242,4 +238,3 @@ def cevapla(komut):
 
     print("Bunu anlayamadım.")
     return
- 

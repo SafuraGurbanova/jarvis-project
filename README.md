@@ -1,84 +1,92 @@
-#  Jarvis – Türkçe Terminal Yapay Zekâ Asistanı
+# 🤖 Jarvis – Türkçe Terminal Yapay Zekâ Asistanı
 
-Jarvis, Python ile geliştirilmiş, Türkçe konuşabilen bir terminal tabanlı yapay zekâ asistanıdır.
+Jarvis, Python ile geliştirilmiş, Türkçe konuşabilen, duygu analizi yapabilen ve problemi adım adım keşfeden bir terminal yapay zekâ asistanıdır.
 
-Bu proje; kullanıcının ruh halini analiz eden, problemleri adım adım keşfeden ve çözüm önerileri sunan bir konuşma sistemi oluşturmayı hedefler.
-
-Proje öğrenme ve gelişim amaçlıdır ve aktif olarak geliştirilmektedir.
+Bu proje tamamen öğrenme amaçlıdır ve sıfırdan mimari kurulmuştur.
 
 ---
 
-##  Özellikler
+## 🖥️ Demo
 
-- Türkçe komut algılama  
-- Duygu durumu tespiti (pozitif / negatif)  
-- Problem takibi (okul, sınav, aile vb.)  
-- Hafıza sistemi (custom memory)  
-- Sebep analizi (`neden böyleyim`)  
-- Dinamik çözüm önerileri  
-- State sistemi ile konuşma akışı yönetimi  
+![Jarvis Demo](screenshots/demo.png)
 
 ---
 
-##  Kullanılan Teknolojiler
+## 🚀 Özellikler
+
+- Türkçe intent algılama
+- Duygu durumu tespiti (iyi / kötü)
+- State Machine tabanlı konuşma akışı
+- Problem → alt problem zinciri
+- Sebep analizi (`neden böyleyim`)
+- Çözüm önerileri üretme
+- Hafıza sistemi (memory)
+- Anti-loop reflection sistemi
+
+---
+
+## 🧠 Nasıl Çalışıyor?
+
+1. Kullanıcı mesajı normalize edilir  
+2. Intent algılanır  
+3. State kontrol edilir  
+4. Problem tespit edilir  
+5. Alt problemler sorgulanır  
+6. Ağırlık hesaplanır  
+7. `neden böyleyim` ile çözüm üretilir  
+
+---
+
+## 🛠 Kullanılan Teknolojiler
 
 - Python  
-- Basit NLP (kelime eşleştirme tabanlı)  
+- Rule-based NLP  
 - State Machine mantığı  
-- Özel memory sistemi  
+- Custom memory sistemi  
 
 ---
 
-##  Çalıştırma
+## ▶️ Çalıştırma
 
 ```bash
 python core.py
 
-##  Proje Yapısı
+
+```md
+## 📁 Proje Yapısı
 
 jarvis-project/
 │
-├── core.py        # Ana program
-├── commands.py    # Konuşma mantığı
-├── memory.py      # Hafıza sistemi
+├── core.py
+├── commands.py
+├── memory.py
+└── screenshots/
 
-##  Nasıl Çalışır?
+---
 
-1. Kullanıcı girdisi normalize edilir
+## 🗺 Roadmap
 
-2. Intent algılanır
+- JSON tabanlı kalıcı hafıza  
+- Log sistemi  
+- GUI arayüz  
+- Sesli giriş / çıkış  
+- OpenAI entegrasyonu  
+- Gelişmiş NLP  
 
-3. State kontrol edilir
 
-4. Problem tespit edilir
+---
 
-5. Alt problemler sorgulanır
-
-6. Ağırlık hesaplanır
-
-7. neden böyleyim ile çözüm üretilir
-
-## Gelecek Hedefleri
-
-OpenAI entegrasyonu
-
-Sesli giriş / çıkış
-
-GUI arayüz
-
-Daha gelişmiş NLP
-
-Kalıcı veritabanı sistemi
-
-## Geliştiriciler
+## 👥 Geliştiriciler
 
 Levent Efe Çiftçi
 
 Safura Gurbanova
 
 Bu proje iki öğrenci geliştirici tarafından yürütülmektedir.
-Odak alanları: Yapay zekâ sistemleri ve backend geliştirme.
+Hedef: Backend & Yapay Zekâ.
 
-## Not
+---
 
-Bu proje eğitim amaçlıdır ve sürekli geliştirilmektedir.
+## ⚠️ Not
+
+Bu proje eğitim amaçlıdır.

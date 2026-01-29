@@ -1,8 +1,11 @@
 {
   "mood": "normal",
-  "last_message": "okul",
+  "last_message": "tarih",
   "state": "idle",
-  "last_problem": "okul",
+  "last_problem": "sinav",
   "emotion": null,
-  "isim": "levent"
+  "isim": "levent",
+  "sad_level": "high",
+  "problem_weight": 13,
+  "reason_used": true
 }
